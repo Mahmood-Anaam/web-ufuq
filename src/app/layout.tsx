@@ -2,13 +2,16 @@ import type { Metadata } from "next";
 import { Tajawal } from "next/font/google";
 
 import { MyRuntimeProvider } from "@/app/MyRuntimeProvider";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import "react-toastify/dist/ReactToastify.css";
 import "@/styles/globals.css";
 import { ToastContainer } from "react-toastify";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
+
+
+     
 const tajawal = Tajawal({
   weight: ["400", "500", "700", "800", "900", "200", "300"],
   subsets: ["arabic"],
@@ -27,10 +30,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
+
     <MyRuntimeProvider>
+   
+      
       <html suppressHydrationWarning lang="ar" dir="rtl" className="h-full">
         <body className={cn(tajawal.className, "h-full")}>
-           <Header/>
+           {/* <Header/> */}
            <ToastContainer
             position="top-center"
             autoClose={1000}
@@ -44,9 +50,10 @@ export default function RootLayout({
             theme="colored"
           />
           {children}
-          <Footer/>
+          {/* <Footer/> */}
           </body>
       </html>
     </MyRuntimeProvider>
+   
   );
 }

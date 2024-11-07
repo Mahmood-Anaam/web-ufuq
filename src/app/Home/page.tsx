@@ -5,8 +5,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 const HomePage: React.FC = () => {
+  const router = useRouter();
   return (
     <div className="min-h-screen bg-gradient-to-b from-primary via-white to-secondary dark:from-bg-color-dark dark:via-gray-900 dark:to-gray-dark py-12 flex flex-col justify-between">
       {/* Header Section
@@ -35,7 +37,10 @@ const HomePage: React.FC = () => {
           استمتع مع طفلك برحلة تعليمية عبر الزمن، يتعلم خلالها من أبرز الأدباء والشعراء العرب بطريقة تفاعلية وممتعة.
         </p>
         <motion.div whileHover={{ scale: 1.05 }}>
-          <Button className="bg-accent hover:bg-accent/90 text-white py-3 px-8 rounded-lg">
+          <Button className="bg-accent hover:bg-accent/90 text-white py-3 px-8 rounded-lg" onClick={()=>{
+router.push("/level");
+
+          }}>
             ابدأ التعلم الآن
           </Button>
         </motion.div>
