@@ -6,7 +6,6 @@ import { useEffect, useState } from "react";
 import ThemeToggler from "./ThemeToggler";
 import menuData from "./menuData";
 import LogoutButton from "./LogoutButton";
-import { motion, AnimatePresence } from "framer-motion";
 
 const Header = ({ payload = null }) => {
   // Navbar toggle
@@ -53,35 +52,24 @@ const Header = ({ payload = null }) => {
           <div className="relative -mx-4 flex items-center justify-between">
             <div className="w-60 max-w-full px-4 xl:mr-12">
               {/* Logo and Title */}
-              <div
- 
-              >
-                <Link href="/" className="flex items-center space-x-3 group">
+              <div>
+                <Link
+                  href="/"
+                  className={`flex items-center space-x-3 header-logo block w-full ${
+                    sticky ? "py-5 lg:py-2" : "py-8"
+                  } `}
+                >
                   <Image
                     src="/logo/logo.png"
                     alt="أفق Logo"
                     width={50}
                     height={50}
-                    className="transition-transform duration-300 group-hover:scale-110"
                   />
-                  {/* <span className="text-3xl font-bold text-white mr-2 group-hover:text-gray-100">
+                  <span className="text-3xl font-bold text-primary mr-2">
                     أفق
-                  </span> */}
+                  </span>
                 </Link>
               </div>
-
-              {/* <Link
-                href="/"
-                className={`header-logo block w-full ${
-                  sticky ? "py-5 lg:py-2" : "py-8"
-                } `}
-              > */}
-
-              {/* add loogo for className="w-full dark:hidden"  and add name app*/}
-
-              {/* add loogo for className="hidden w-full dark:block"  and add name app*/}
-
-              {/* </Link> */}
             </div>
             <div className="flex w-full items-center justify-between px-4">
               <div>
@@ -89,7 +77,7 @@ const Header = ({ payload = null }) => {
                   onClick={navbarToggleHandler}
                   id="navbarToggler"
                   aria-label="Mobile Menu"
-                  className="absolute right-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
+                  className="absolute left-4 top-1/2 block translate-y-[-50%] rounded-lg px-3 py-[6px] ring-primary focus:ring-2 lg:hidden"
                 >
                   <span
                     className={`relative my-1.5 block h-0.5 w-[30px] bg-black transition-all duration-300 dark:bg-white ${
@@ -109,13 +97,13 @@ const Header = ({ payload = null }) => {
                 </button>
                 <nav
                   id="navbarCollapse"
-                  className={`navbar absolute right-0 z-30 w-[250px] rounded border-[.5px] border-body-color/50 bg-white px-6 py-4 duration-300 dark:border-body-color/20 dark:bg-dark lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${
+                  className={`navbar absolute left-0 z-30 w-[250px] rounded border-[.5px] border-body-color/50 bg-white px-6 py-4 duration-300 dark:border-body-color/20 dark:bg-dark lg:visible lg:static lg:w-auto lg:border-none lg:!bg-transparent lg:p-0 lg:opacity-100 ${
                     navbarOpen
                       ? "visibility top-full opacity-100"
                       : "invisible top-[120%] opacity-0"
                   }`}
                 >
-                  <ul className="block lg:flex lg:space-x-12">
+                  <ul className="block lg:flex lg:space-x-12" dir="ltr">
                     {menuData.map((menuItem, index) => (
                       <li key={index} className="group relative">
                         {menuItem.path ? (
@@ -169,7 +157,7 @@ const Header = ({ payload = null }) => {
                   </ul>
                 </nav>
               </div>
-              <div className="flex items-center justify-end pr-16 lg:pr-0">
+              <div className="flex items-center justify-end pl-16 lg:pl-0">
                 {payload ? (
                   <>
                     <LogoutButton />

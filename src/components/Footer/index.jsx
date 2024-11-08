@@ -1,11 +1,9 @@
-"use client";
 import Image from "next/image";
 import Link from "next/link";
-import { FaInstagram,FaGithub,FaLinkedin} from "react-icons/fa";
+import { FaInstagram, FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Footer = () => {
   const socialLinks = [
-    
     { icon: FaInstagram, href: "https://instagram.com/afuq" },
     { icon: FaLinkedin, href: "https://instagram.com/afuq" },
     { icon: FaGithub, href: "https://twitter.com/afuq" },
@@ -55,8 +53,6 @@ const Footer = () => {
           {/* Social Links & Copyright */}
           <div className="flex flex-col items-center gap-4">
             <div className="flex gap-4">
-              
-
               {socialLinks.map((social, index) => (
                 <a
                   key={index}
