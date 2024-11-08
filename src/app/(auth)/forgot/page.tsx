@@ -1,4 +1,3 @@
-// src/app/(auth)/forgot/page.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -8,6 +7,7 @@ import Link from "next/link";
 import axios from "axios";
 import { DOMAIN } from "@/utils/constants";
 import { toast } from "react-toastify";
+import Spinner from "@/components/Spinner";
 
 const ForgotPage: React.FC = () => {
   const [email, setEmail] = useState("");
@@ -32,7 +32,8 @@ const ForgotPage: React.FC = () => {
         toast.success("تم إرسال كلمة المرور الجديدة إلى بريدك الإلكتروني.");
       }
     } catch (error: any) {
-      const errorMessage = error?.response?.data?.message || "فشل في إرسال رابط الاستعادة.";
+      const errorMessage =
+        error?.response?.data?.message || "فشل في إرسال رابط الاستعادة.";
       toast.error(errorMessage);
     } finally {
       setIsLoading(false);
@@ -47,7 +48,9 @@ const ForgotPage: React.FC = () => {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="w-full max-w-md p-8 bg-white dark:bg-gray-dark rounded-2xl shadow-lg"
       >
-        <h2 className="text-3xl font-bold text-center text-accent mb-6">استعادة كلمة المرور</h2>
+        <h2 className="text-3xl font-bold text-center text-accent mb-6">
+          استعادة كلمة المرور
+        </h2>
         <p className="text-sm text-body-color dark:text-white text-center mb-4">
           أدخل بريدك الإلكتروني لاستعادة كلمة المرور
         </p>
@@ -72,7 +75,7 @@ const ForgotPage: React.FC = () => {
               // disabled={isLoading}
               disabled
             >
-              {isLoading ? "..." : "استعادة"}
+              {isLoading ? <Spinner /> : "استعادة"}
             </Button>
           </motion.div>
         </form>

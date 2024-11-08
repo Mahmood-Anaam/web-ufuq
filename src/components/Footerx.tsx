@@ -7,10 +7,7 @@ import { motion } from "framer-motion";
 
 const Footer: React.FC = () => {
   return (
-    <motion.footer
-      initial={{ y: 20, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.5 }}
+    <footer
       className="container mx-auto text-center text-body-color dark:text-white py-4 mt-16 border-t border-gray-200 dark:border-gray-700"
     >
       <p>&copy; {new Date().getFullYear()} أفق. جميع الحقوق محفوظة.</p>
@@ -22,7 +19,7 @@ const Footer: React.FC = () => {
           الشروط والأحكام
         </Link>
       </nav>
-    </motion.footer>
+    </footer>
   );
 };
 

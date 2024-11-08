@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 // Define routes that require authentication
-const protectedRoutes = ["/profile", "/level","/home"]; // add any protected routes here
+const protectedRoutes = ["/profile", "/level"]; // add any protected routes here
 
 export function middleware(request: NextRequest) {
   const token = request.cookies.get("jwtToken");

@@ -1,14 +1,14 @@
-// src/app/(auth)/signin/page.tsx
 "use client";
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button"; 
+import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { DOMAIN } from "@/utils/constants";
 import { toast } from "react-toastify";
+import Spinner from "@/components/Spinner";
 
 const SigninPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -37,7 +37,8 @@ const SigninPage: React.FC = () => {
 
       if (response.status === 200) {
         toast.success("Login successful!");
-        router.replace("/home"); // Redirect to homepage or another page after successful login
+        router.replace("/");
+        router.refresh();
       }
     } catch (error: any) {
       const errorMessage = error?.response?.data?.message || "Login failed.";
@@ -55,7 +56,9 @@ const SigninPage: React.FC = () => {
         transition={{ duration: 0.5, ease: "easeOut" }}
         className="w-full max-w-md p-8 bg-white dark:bg-gray-dark rounded-2xl shadow-lg"
       >
-        <h2 className="text-3xl font-bold text-center text-accent mb-6">تسجيل الدخول</h2>
+        <h2 className="text-3xl font-bold text-center text-accent mb-6">
+          تسجيل الدخول
+        </h2>
         <form className="space-y-6" onSubmit={handleSubmit}>
           <div>
             <label className="block text-sm font-medium text-body-color dark:text-white">
@@ -89,7 +92,7 @@ const SigninPage: React.FC = () => {
               className="w-full bg-accent hover:bg-accent/90 text-white rounded-md py-2.5"
               disabled={isLoading}
             >
-              {isLoading ? "جاري الدخول..." : "دخول"}
+              {isLoading ? <Spinner /> : "دخول"}
             </Button>
           </motion.div>
         </form>

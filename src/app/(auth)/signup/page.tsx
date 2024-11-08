@@ -1,4 +1,3 @@
-// src/app/(auth)/signup/page.tsx
 "use client";
 
 import React, { useState } from "react";
@@ -9,6 +8,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { DOMAIN } from "@/utils/constants";
 import { toast } from "react-toastify";
+import Spinner from "@/components/Spinner";
 
 const SignUpPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -40,7 +40,8 @@ const SignUpPage: React.FC = () => {
 
       if (response.status === 201) {
         toast.success("Account created successfully!");
-        router.replace("/signin"); 
+        router.replace("/signin");
+        router.refresh();
       }
     } catch (error: any) {
       const errorMessage =
@@ -108,7 +109,7 @@ const SignUpPage: React.FC = () => {
               className="w-full bg-accent hover:bg-accent/90 text-white rounded-md py-2.5"
               disabled={isLoading}
             >
-              {isLoading ? "جاري الإنشاء..." : "إنشاء حساب"}
+              {isLoading ? <Spinner /> : "إنشاء حساب"}
             </Button>
           </motion.div>
         </form>
