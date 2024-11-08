@@ -1,5 +1,3 @@
-// src/app/api/users/signup/route.ts
-
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import { z } from "zod";
@@ -58,7 +56,7 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
       { message: "User successfully created", user: { ...newUser } },
       { status: 201 }
     );
-  } catch (error:any) {
+  } catch (error: any) {
     if (error instanceof z.ZodError) {
       // Handle validation errors
       return NextResponse.json(

@@ -1,12 +1,8 @@
-// src/utils/verifyToken.ts
-import jwt, { JwtPayload } from "jsonwebtoken";
-import { NextRequest } from "next/server"; // Assuming you're using Next.js; adjust if needed
-
-// Define the return type for user payloads from JWT
-export type UserPayload = JwtPayload | null;
+import jwt from "jsonwebtoken";
+import { NextRequest } from "next/server";
 
 // Verify Token For API Endpoint
-export function verifyToken(request: NextRequest): UserPayload {
+export function verifyToken(request: NextRequest): any {
   try {
     const jwtToken = request.cookies.get("jwtToken");
     const token = jwtToken?.value;
@@ -15,19 +11,19 @@ export function verifyToken(request: NextRequest): UserPayload {
     const privateKey = process.env.JWT_SECRET as string;
     const userPayload = jwt.verify(token, privateKey) || null;
 
-    return userPayload as UserPayload;
+    return userPayload;
   } catch (error) {
     return null;
   }
 }
 
 // Verify Token For Page
-export function verifyTokenForPage(token: string): UserPayload {
+export function verifyTokenForPage(token: string): any {
   try {
     const privateKey = process.env.JWT_SECRET as string;
     const userPayload = jwt.verify(token, privateKey) || null;
 
-    return userPayload as UserPayload;
+    return userPayload;
   } catch (error) {
     return null;
   }

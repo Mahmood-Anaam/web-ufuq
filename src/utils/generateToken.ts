@@ -1,14 +1,8 @@
-// src/utils/generateToken.ts
 import jwt from "jsonwebtoken";
 import { serialize } from "cookie";
 
-// Define the payload type for JWT
-interface JwtPayload {
-  [key: string]: any; // You can replace 'any' with specific fields if known, e.g., `userId: string`
-}
-
 // Generate JWT Token
-export function generateJWT(jwtPayload: JwtPayload): string {
+export function generateJWT(jwtPayload: any): string {
   const privateKey = process.env.JWT_SECRET as string;
 
   const token = jwt.sign(jwtPayload, privateKey, {
@@ -19,7 +13,7 @@ export function generateJWT(jwtPayload: JwtPayload): string {
 }
 
 // Set Cookie with JWT
-export function setCookie(jwtPayload:JwtPayload): string {
+export function setCookie(jwtPayload: any): string {
   const token = generateJWT(jwtPayload);
 
   const cookie = serialize("jwtToken", token, {

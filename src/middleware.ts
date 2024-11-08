@@ -1,15 +1,18 @@
-// src/middleware.ts
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 // Define routes that require authentication
-const protectedRoutes = ["/profile", "/level"]; // add any protected routes here
-
+const protectedRoutes = ["/profile", "/level"];
 export function middleware(request: NextRequest) {
   const token = request.cookies.get("jwtToken");
 
   // If the request is for a protected route and there is no token, redirect to the login page
-  if (protectedRoutes.some((route) => request.nextUrl.pathname.startsWith(route)) && !token) {
+  if (
+    protectedRoutes.some((route) =>
+      request.nextUrl.pathname.startsWith(route)
+    ) &&
+    !token
+  ) {
     const loginUrl = new URL("/signin", request.url);
     return NextResponse.redirect(loginUrl);
   }

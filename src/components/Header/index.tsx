@@ -7,7 +7,7 @@ import ThemeToggler from "./ThemeToggler";
 import menuData from "./menuData";
 import LogoutButton from "./LogoutButton";
 
-const Header = ({ payload = null }) => {
+const Header = ({payload}: any = null) => {
   // Navbar toggle
   const [navbarOpen, setNavbarOpen] = useState(false);
   const navbarToggleHandler = () => {
@@ -104,7 +104,7 @@ const Header = ({ payload = null }) => {
                   }`}
                 >
                   <ul className="block lg:flex lg:space-x-12" dir="ltr">
-                    {menuData.map((menuItem, index) => (
+                    {menuData.map((menuItem: any, index: number) => (
                       <li key={index} className="group relative">
                         {menuItem.path ? (
                           <Link
@@ -140,15 +140,17 @@ const Header = ({ payload = null }) => {
                                 openIndex === index ? "block" : "hidden"
                               }`}
                             >
-                              {menuItem.submenu.map((submenuItem, index) => (
-                                <Link
-                                  href={submenuItem.path}
-                                  key={index}
-                                  className="block rounded py-2.5 text-sm text-dark hover:text-primary dark:text-white/70 dark:hover:text-white lg:px-3"
-                                >
-                                  {submenuItem.title}
-                                </Link>
-                              ))}
+                              {menuItem.submenu.map(
+                                (submenuItem: any, index: number) => (
+                                  <Link
+                                    href={submenuItem.path}
+                                    key={index}
+                                    className="block rounded py-2.5 text-sm text-dark hover:text-primary dark:text-white/70 dark:hover:text-white lg:px-3"
+                                  >
+                                    {submenuItem.title}
+                                  </Link>
+                                )
+                              )}
                             </div>
                           </>
                         )}

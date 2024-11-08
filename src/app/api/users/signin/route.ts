@@ -1,4 +1,3 @@
-// src/app/api/users/signin/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
 import { z } from "zod";
@@ -69,7 +68,11 @@ export async function POST(request: NextRequest): Promise<NextResponse> {
 
     // Handle other errors
     return NextResponse.json(
-      { message: `Internal server error: ${error instanceof Error ? error.message : "Unknown error"}` },
+      {
+        message: `Internal server error: ${
+          error instanceof Error ? error.message : "Unknown error"
+        }`,
+      },
       { status: 500 }
     );
   }

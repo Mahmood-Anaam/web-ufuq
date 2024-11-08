@@ -1,4 +1,3 @@
-// src/app/api/users/logout/route.ts
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 

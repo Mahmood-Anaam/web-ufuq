@@ -20,7 +20,6 @@ const Footer = () => {
               alt="أفق"
               width={45}
               height={45}
-              className="transition-all duration-300"
             />
           </Link>
 
