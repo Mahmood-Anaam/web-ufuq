@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Tajawal } from "next/font/google";
-import { MyRuntimeProvider } from "@/app/MyRuntimeProvider";
+
 import "react-toastify/dist/ReactToastify.css";
 import "@/styles/globals.css";
 import { ToastContainer } from "react-toastify";
@@ -31,7 +31,7 @@ export default function RootLayout({
   const payload = verifyTokenForPage(token);
 
   return (
-    // <MyRuntimeProvider>
+    
     <html suppressHydrationWarning lang="ar" dir="rtl">
       <body className={`bg-[#FCFCFC] dark:bg-black ${tajawal.className}`}>
         <Providers>

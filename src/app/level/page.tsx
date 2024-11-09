@@ -1,12 +1,12 @@
 // src/app/level/[id]/page.jsx
 "use client";
 import React from "react";
-import Tabs from "@/components/Common/Tabs";
+import Tabs from "@/components/Learning/Tabs";
 import { motion } from "framer-motion";
-import LearningSection from "@/components/LearningSection";
-import TestingSection from "@/components/TestingSection";
+import LearningSection from "@/components/Learning/LearningSection";
+import TestingSection from "@/components/Learning/TestingSection";
 import { levelData } from "@/utils/levelData";
-
+import { MyRuntimeProvider } from "@/app/MyRuntimeProvider";
 const LevelPage = () => {
 
 
@@ -20,6 +20,7 @@ const LevelPage = () => {
   ];
 
   return (
+    <MyRuntimeProvider>
     <div className="h-full min-h-screen bg-gradient-to-b from-secondary via-white to-secondary dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-12">
       <div className="container mx-auto px-4">
         {/* عنوان المستوى */}
@@ -35,6 +36,7 @@ const LevelPage = () => {
         <Tabs tabs={tabNames} content={tabContent} />
       </div>
     </div>
+    </MyRuntimeProvider>
   );
 };
 

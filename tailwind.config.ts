@@ -82,5 +82,11 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    require("tailwindcss-animate"), 
+    require("@assistant-ui/react/tailwindcss")({
+      components: ["thread","assistant-modal"],
+    })
+  ],
+
 };
