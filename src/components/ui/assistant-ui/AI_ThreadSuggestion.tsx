@@ -1,5 +1,5 @@
+// src/components/ui/assistant-ui/AI_ThreadSuggestion.tsx
 
-// src\components\ui\assistant-ui\AI_ThreadSuggestion.tsx
 import React, {
   FC,
   PropsWithChildren,
@@ -22,7 +22,6 @@ const AI_ThreadSuggestion: FC<PropsWithChildren> = ({ children }) => {
 
   const debounceRef = useRef(false);
   const generateSuggestions = useCallback(async (content: string) => {
-    // do not send duplicate requests in React Strict Mode during development
     if (process.env.NODE_ENV === "development") {
       if (debounceRef.current) return;
       debounceRef.current = true;
@@ -31,7 +30,6 @@ const AI_ThreadSuggestion: FC<PropsWithChildren> = ({ children }) => {
       }, 0);
     }
 
-   
     const [response1, response2] = await Promise.all([
       generate((await SuggestionsPrompts.sg1.q1.invoke({content:content})).value),
       generate((await SuggestionsPrompts.sg1.q2.invoke({content:content})).value),
@@ -41,21 +39,18 @@ const AI_ThreadSuggestion: FC<PropsWithChildren> = ({ children }) => {
     for await (const delta of readStreamableValue(response1.output)) {
       generatedOutput += delta;
     }
-    console.log(generatedOutput);
     setOutput(generatedOutput);
 
     let generatedOutput2 = "";
     for await (const delta of readStreamableValue(response2.output)) {
       generatedOutput2 += delta;
     }
-    console.log(generatedOutput2);
     setOutput2(generatedOutput2);
   }, []);
 
   useEffect(() => {
     const lastMessageContent = lastAssistantMessage?.content;
-    const lastMessageString = JSON.stringify(lastMessageContent);
-    generateSuggestions(lastMessageString);
+    generateSuggestions(JSON.stringify(lastMessageContent));
   }, [lastAssistantMessage, generateSuggestions]);
 
   return (
@@ -68,7 +63,7 @@ const AI_ThreadSuggestion: FC<PropsWithChildren> = ({ children }) => {
       >
         <Button
           variant="outline"
-          className="h-auto flex-1 p-2"
+          className="h-auto flex-1 p-2 rounded-md shadow-md text-sm font-medium text-gray-600 bg-gray-100 dark:bg-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all"
           style={{ whiteSpace: "normal", wordWrap: "break-word" }}
         >
           {output || children}
@@ -82,7 +77,7 @@ const AI_ThreadSuggestion: FC<PropsWithChildren> = ({ children }) => {
       >
         <Button
           variant="outline"
-          className="h-auto flex-1 p-2"
+          className="h-auto flex-1 p-2 rounded-md shadow-md text-sm font-medium text-gray-600 bg-gray-100 dark:bg-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700 transition-all"
           style={{ whiteSpace: "normal", wordWrap: "break-word" }}
         >
           {output2 || children}
@@ -92,12 +87,4 @@ const AI_ThreadSuggestion: FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-const WrappedAI_ThreadSuggestion = () => {
-  return (
-    <ThreadPrimitive.If running={false}>
-      <AI_ThreadSuggestion />
-    </ThreadPrimitive.If>
-  );
-};
-
-export default WrappedAI_ThreadSuggestion;
+export default AI_ThreadSuggestion;

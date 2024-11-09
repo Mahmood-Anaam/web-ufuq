@@ -1,0 +1,31 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+        
+enum Role {
+  ADMIN      // Full access to all resources and functionalities
+  USER       // Basic access to the application
+  MODERATOR  // Can manage content or moderate user interactions
+  GUEST      // Limited access, often read-only or minimal interaction
+}
+
+model User {
+  id        Int         @id @default(autoincrement())
+  email     String      @unique
+  username  String      @db.VarChar(100)
+  password  String
+  role      Role        
+  avatar    String?     // Stores image data as a base64 encoded string
+  createdAt DateTime    @default(now())
+  updatedAt DateTime    @updatedAt
+}

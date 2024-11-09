@@ -1,5 +1,3 @@
-// src\components\ui\assistant-ui\thread.tsx
-
 "use client";
 
 import {
@@ -16,7 +14,7 @@ import {
   TooltipTrigger,
   TooltipProvider,
 } from "@/components/ui/tooltip";
-import { cn } from "@/lib/utils";
+import { cn } from "@/utils/utils";
 import { SendHorizontalIcon } from "lucide-react";
 import AI_ThreadSuggestion from "./AI_ThreadSuggestion";
 import ThreadSuggestion from "./ThreadSuggestion";
@@ -29,7 +27,7 @@ export const Thread: FC = () => {
     <TooltipProvider>
       <ThreadPrimitive.Root className="bg-background h-full">
         <ThreadPrimitive.Viewport className="flex h-full flex-col items-center overflow-y-scroll scroll-smooth px-4 pt-8">
-          <ThreadWelcome />
+
           <ThreadPrimitive.Messages
             components={{
               UserMessage,
@@ -56,38 +54,13 @@ export const Thread: FC = () => {
   );
 };
 
-const ThreadWelcome: FC = () => {
-  {
-    /* This is WELCOME UI */
-  }
-  return (
-    <div className="flex w-full max-w-2xl grow flex-col px-4 py-6">
-      <ThreadPrimitive.Empty>
-        {/* <div className="flex flex-grow basis-full flex-col items-center justify-center">
-          <h1 className="leading-tighter mb-4 text-center text-5xl font-extrabold tracking-tighter md:text-6xl">
-            <span className="bg-gradient-to-r from-green-500 to-teal-400 bg-clip-text text-transparent">
-              AI_button. Try me
-            </span>
-          </h1>
-        </div> */}
-        {/* <div className="mb-4 w-full px-4">
-          <div className="flex flex-wrap justify-center gap-4">
-            <ThreadSuggestion prompt="Tell me something goofy">
-              <p className="font-semibold">Press here</p>
-            </ThreadSuggestion>
-          </div>
-        </div> */}
-      </ThreadPrimitive.Empty>
-    </div>
-  );
-};
 
 const Composer: FC = () => {
   return (
     <ComposerPrimitive.Root className="relative flex w-full items-end rounded-lg border transition-shadow focus-within:shadow-sm">
       <ComposerPrimitive.Input
         autoFocus
-        placeholder="اكتب سؤالك هنا..."
+        placeholder="Write a message..."
         rows={1}
         className="placeholder:text-muted-foreground size-full max-h-40 resize-none bg-transparent p-4 pr-12 text-sm outline-none"
       />
@@ -101,11 +74,11 @@ const Composer: FC = () => {
               )}
             >
               <SendHorizontalIcon />
-              <span className="sr-only">إرسال</span>
+              <span className="sr-only">Send</span>
             </Button>
           </TooltipTrigger>
         </ComposerPrimitive.Send>
-        <TooltipContent side="bottom">إرسال</TooltipContent>
+        <TooltipContent side="bottom">Send</TooltipContent>
       </Tooltip>
     </ComposerPrimitive.Root>
   );

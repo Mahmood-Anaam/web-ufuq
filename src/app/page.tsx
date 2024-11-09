@@ -1,22 +1,14 @@
-import { Thread } from "@/components/ui/assistant-ui/thread";
-// import { Thread } from "@assistant-ui/react";
-import SigninPage from "./(auth)/signin/page";
-import SignUpPage from "./(auth)/signup/page";
-import ForgotPage from "./(auth)/forgot/page";
-import HomePage from "./Home/page";
-import StartLearning from "@/components/StartLearning";
+import React from "react";
+import ScrollUp from "@/components/Common/ScrollUp";
+import Hero from "@/components/Hero";
 
-export default function Home() {
+const HomePage: React.FC = () => {
   return (
-    <main className="h-full">
-      <Thread />
-      {/* <SigninPage/> */}
-      {/* <SignUpPage/> */}
-      {/* <ForgotPage/> */}
-      {/* <HomePage/> */}
-      {/* <StartLearning/> */}
-      
-
-    </main>
+    <>
+      <ScrollUp />
+      <Hero />
+    </>
   );
-}
+};
+
+export default HomePage;
